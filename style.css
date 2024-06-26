@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-/* Ensure the body uses flexbox to center its children */
+/* Using flexbox to center its children */
 body {
     display: flex;
     justify-content: center;

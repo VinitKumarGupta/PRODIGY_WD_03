@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the body uses flexbox to center its children */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background-color: #001021;
+}
+
+.container {
+    position: relative;
+    z-index: 2; /* Above the bubbles */
+    text-align: center;
+}
+
+h1 {
+    scale: 1.2;
+    color: #F8F1FF;
+    margin-bottom: 20px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: #11B5E4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cell.x::before {
+    content: 'X';
+    font-weight: bold;
+    color: #001021;
+}
+
+.cell.o::before {
+    content: 'O';
+    font-weight: bold;
+    color: #FCFFFD;
+}
+
+.message {
+    font-size: 25px;
+    display: none;
+    color: #fff;
+}
+
+.message.show {
+    display: block;
+}
+
+.restartButton {
+    border: none;
+    outline: none;
+    margin-top: 15px;
+    height: 40px;
+    width: 140px;
+    background: #ce9f11;
+    color: #010101;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+.restartButton:hover {
+    cursor: pointer;
+    background: #ffc000;
+    color: #FCFFFD;
+    box-shadow: 0 0 5px #ffc000,
+    0 0 20px #ffc000,
+    0 0 60px #ffc000;
+    transition: 0.3s ease-in-out;
+}
+
+/* position set to absolute so that it goes to back */
+.bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Behind the main content */
+    display: flex;
+}
+
+.bubbles span {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #4fc3dc;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #4fc3dc44,
+    0 0 50px #4fc3dc,
+    0 0 100px #4fc3dc;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(200s / var(--i));
+}
+
+.bubbles span:nth-child(even) 
+{
+    background: #ff2d75;
+    box-shadow: 0 0 0 10px #ff2d7544,
+    0 0 50px #ff2d75,
+    0 0 100px #ff2d75;
+}
+
+@keyframes animate 
+{
+    0% 
+    {
+        transform: translateY(100vh) scale(0);
+    }
+    100% 
+    {
+        transform: translateY(-100vh) scale(1);
+    }
+}
